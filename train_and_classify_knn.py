@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.preprocessing import LabelEncoder, StandardScaler, MinMaxScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
@@ -15,6 +15,8 @@ y_encoded = le.fit_transform(y)
 
 # Normalize features
 scaler = StandardScaler()
+if input("Scaler?:") == "minmax":
+    scaler = MinMaxScaler()
 X_scaled = scaler.fit_transform(X)
 
 # Split dataset into training and testing sets
