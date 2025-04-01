@@ -1,0 +1,4 @@
+[submodule "Guitar_Recorder_for_project"]
+	path = Guitar_Recorder_for_project
+	url = https://github.com/cyptrix12/Guitar_Recorder_for_project
+	branch = main
