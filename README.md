@@ -4,11 +4,34 @@ This project is part of the group work titled **"Guitar Recording Corpus for Aut
 
 ## Structure
 
-The workflow is split into two Python scripts:
+The workflow is split into three Python scripts:
 
 ---
 
-### 1. `extract_features_and_save.py`
+### 1. `guitar_recording_organizer.py`
+
+This script provides a full graphical user interface (GUI) for organizing guitar recording files.
+
+#### Features
+
+- Allows the user to select input and output folders via a dialog box.
+- Automatically detects guitar model names from file names (e.g., `ArgSG_B_otwarta_022_ID1_4.wav` → `ArgSG`), and groups files into corresponding subfolders.
+- Supports two modes: **Copy** (preserves source files) and **Move** (relocates them).
+- Displays a progress bar and current file status during the operation.
+- Provides a log panel with detailed real-time feedback.
+- Prevents user from selecting the same or nested input/output folders, to avoid data loss or infinite loops.
+
+#### Typical Workflow
+
+1. Launch the script.
+2. Select the folder containing guitar recordings (**it will search recursively**).
+3. Select the destination folder for organized files.
+4. Choose between Copy or Move mode.
+5. Click ***Start*** to begin the process.
+
+---
+
+### 2. `extract_features_and_save.py`
 
 This script processes a large folder of guitar recordings organized by instrument model, extracts MFCC (Mel-Frequency Cepstral Coefficient) features from each `.wav` file, and saves the resulting feature matrix and labels to disk in NumPy format.
 
@@ -39,7 +62,7 @@ Each subfolder represents a different guitar model class.
 
 ---
 
-### 2. `train_and_classify_knn.py`
+### 3. `train_and_classify_knn.py`
 
 This script loads the previously saved feature and label arrays, encodes and normalizes them, and trains a k-Nearest Neighbors (kNN) classifier. It splits the dataset into training and test sets and visualizes a confusion matrix of the predictions.
 
