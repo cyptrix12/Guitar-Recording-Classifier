@@ -8,6 +8,7 @@ N_MFCC = 13
 
 features = []
 labels = []
+file_names = []
 
 for root, dirs, files in os.walk(DATA_PATH):
     for file in files:
@@ -20,10 +21,12 @@ for root, dirs, files in os.walk(DATA_PATH):
                 mfcc_mean = np.mean(mfcc.T, axis=0)
                 features.append(mfcc_mean)
                 labels.append(label)
+                file_names.append(file_path)
             except Exception as e:
                 print(f"Error processing {file_path}: {e}")
 
 # Save to file
 np.save("features.npy", features)
 np.save("labels.npy", labels)
-print("Saved features and labels.")
+np.save("filenames.npy", file_names)
+print("Saved features, labels and filenames.")

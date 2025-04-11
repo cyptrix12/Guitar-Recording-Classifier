@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 # Load data
 X = np.load("features.npy")
 y = np.load("labels.npy")
+filenames = np.load("filenames.npy")
 
 # Encode class labels
 le = LabelEncoder()
@@ -18,8 +19,8 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 # Split dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(
-    X_scaled, y_encoded, test_size=0.2, random_state=42
+X_train, X_test, y_train, y_test, filenames_train, filenames_test = train_test_split(
+    X_scaled, y_encoded, filenames, test_size=0.2, random_state=42
 )
 
 # Train kNN classifier
@@ -35,3 +36,13 @@ disp.plot(cmap="Blues", xticks_rotation=45)
 plt.title("Confusion Matrix - kNN")
 plt.tight_layout()
 plt.show()
+
+# Find indices of misclassified samples
+misclassified_indices = np.where(y_test != y_pred)[0]
+
+# Display details of misclassified samples along with file names
+for idx in misclassified_indices:
+    true_label = le.inverse_transform([y_test[idx]])[0]
+    predicted_label = le.inverse_transform([y_pred[idx]])[0]
+    file_name = filenames_test[idx]
+    print(f"File {file_name}: Real label = {true_label}, label classified = {predicted_label}")
