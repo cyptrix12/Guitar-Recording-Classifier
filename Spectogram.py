@@ -6,7 +6,7 @@ import soundfile as sf
 import os
 
 # DIRECTORIES WITH RECORDINGS AND SPECTROGRAMS
-source_root = 'data_repaired'
+source_root = 'data'
 output_root = 'Spectograms'
 
 HOP = 64

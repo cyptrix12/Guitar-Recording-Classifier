@@ -83,7 +83,7 @@ This script generates visual spectrograms (as .png images) from .wav audio files
 
 #### Features
 
-- Processes .wav files from the data_repaired directory.
+- Processes .wav files from the data directory.
 - Creates dB-scaled spectrograms limited to the 16 Hz – 20 kHz range.
 - Saves .png images to the Spectograms folder, preserving the original folder structure.
 - Optimizes spectrogram appearance (no axes, high DPI, tight layout).
@@ -95,7 +95,7 @@ This script generates visual spectrograms (as .png images) from .wav audio files
 - Axes and margins are removed for a clean graphic output
 
 #### Typical Workflow
-- Ensure the data_repaired folder contains your .wav files.
+- Ensure the data folder contains your .wav files.
 - Run the script:
     python Spectogram.py
 - Check the Spectograms directory – it should now contain subfolders with the generated spectrogram images.
