@@ -77,6 +77,31 @@ This script loads the previously saved feature and label arrays, encodes and nor
 
 ---
 
+### 4. `Spectogram.py`
+
+This script generates visual spectrograms (as .png images) from .wav audio files located in the source directory. It uses Short-Time Fourier Transform (STFT) and the librosa library to visualize frequency content over time.
+
+#### Features
+
+- Processes .wav files from the data directory.
+- Creates dB-scaled spectrograms limited to the 16 Hz – 20 kHz range.
+- Saves .png images to the Spectograms folder, preserving the original folder structure.
+- Optimizes spectrogram appearance (no axes, high DPI, tight layout).
+
+#### Parameters
+- FFT size: 4096
+- Hop length: 64
+- Image format: PNG, 300 DPI
+- Axes and margins are removed for a clean graphic output
+
+#### Typical Workflow
+- Ensure the data folder contains your .wav files.
+- Run the script:
+    python Spectogram.py
+- Check the Spectograms directory – it should now contain subfolders with the generated spectrogram images.
+
+---
+
 ## Requirements
 
 Install the necessary Python packages:
