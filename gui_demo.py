@@ -1,10 +1,13 @@
 import os
+import subprocess
+import sys
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter import ttk
 import librosa
 import numpy as np
 import joblib
+from PIL import Image, ImageTk
 
 MODEL_FILES = {
     "KNN": "trained_model/knn_model.pkl",
@@ -35,15 +38,40 @@ class GuitarClassifierApp:
         # —––––– FRAMES –––––—
         top_frame    = ttk.Frame(master, padding=10)
         results_frame= ttk.Frame(master, padding=(10,0,10,10))
-        top_frame.grid   (row=0, column=0, sticky="ew")
-        results_frame.grid(row=1, column=0, sticky="nsew")
+        top_frame.grid   (row=1, column=0, sticky="ew")
+        results_frame.grid(row=2, column=0, sticky="nsew")
+
+        # ––––––––– HEADER BAR –––––––––
+        header = ttk.Frame(master, padding=(10,5))
+        header.grid(row=0, column=0, sticky="ew")
+        header.columnconfigure(0, weight=1)
+        header.columnconfigure(1, weight=0)
+
+        # logo with project title
+        logo_path = os.path.join(os.path.dirname(__file__), "logo.png")
+        img = Image.open(logo_path).resize((32,32))
+        self.logo_img = ImageTk.PhotoImage(img)
+        lbl_logo = ttk.Label(header,
+                             image=self.logo_img,
+                             text="GADA",
+                             compound="left",
+                             font=("Segoe UI", 14, "bold"))
+        lbl_logo.grid(row=0, column=0, sticky="w")
+
+        # Open Recorder button
+        btn_rec = ttk.Button(header,
+                             text="Open Recorder",
+                             command=self.open_recorder)
+        btn_rec.grid(row=0, column=1, sticky="e")
 
         # —––––– BUTTON –––––—
+        controls = ttk.Frame(master, padding=(10,0,10,10))
+        controls.grid(row=1, column=0, sticky="ew")
         self.btn_open = ttk.Button(
             top_frame, text="Select WAV File…", style="Header.TButton",
             command=self.open_file
         )
-        self.btn_open.pack(fill="x")
+        self.btn_open.pack(fill="x", pady=(0,5))
 
         self.file_label = ttk.Label(top_frame, text="No file selected", font=("Segoe UI", 10, "italic"))
         self.file_label.pack(fill="x", pady=(5,10))
@@ -73,6 +101,15 @@ class GuitarClassifierApp:
         except Exception as e:
             messagebox.showerror("Loading Error", f"Failed to load model files:\n{e}")
             master.quit()
+
+    def open_recorder(self):
+        # find your main.py next to gui_demo.py (adjust if in a subfolder)
+        script = os.path.join(os.path.dirname(__file__), "Guitar_Recorder_for_project", "main.py")
+        python = sys.executable
+        try:
+            subprocess.Popen([python, script])
+        except Exception as e:
+            messagebox.showerror("Error", f"Could not launch recorder:\n{e}")
 
     def open_file(self):
         path = filedialog.askopenfilename(filetypes=[("WAV files","*.wav")])
