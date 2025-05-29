@@ -5,9 +5,10 @@
 This project is part of the group work titled **"Guitar Recording Corpus for Automatic Instrument Model Recognition"** developed at Gdańsk University of Technology (WETI PG). It provides a basic workflow for extracting audio features (MFCCs) from guitar recordings and classifying them using a k-Nearest Neighbors (kNN) model.
 
 ## Links
-[Project Website – Overview, Dataset & Paper](https://gingerpianist.github.io/GADA_demo_page/)
 
-[Dataset](https://drive.google.com/file/d/1yAnUh0Txv7RzXawuUQVIIUR5VtuIA1Nv/view?usp=sharing)
+Go to our [Project Page](https://gingerpianist.github.io/GADA_demo_page/) to see the overview, access the dataset, and read the full paper — or jump directly to what you need below:
+- [Dataset](https://drive.google.com/file/d/1yAnUh0Txv7RzXawuUQVIIUR5VtuIA1Nv/view?usp=sharing)
+- [Paper](https://gingerpianist.github.io/GADA_demo_page/GADA_Paper.pdf)
 
 ## Structure
 
